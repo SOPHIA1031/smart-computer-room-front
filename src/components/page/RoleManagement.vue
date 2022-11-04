@@ -91,7 +91,8 @@
             }
         },
         created() {
-            this.getData();
+            // this.getData();
+            this.getList();
         },
         computed: {
             data() {
@@ -121,17 +122,17 @@
                 this.getData();
             },
             // 获取 easy-mock 的模拟数据
-            getData() {
-                // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
-                if (process.env.NODE_ENV === 'development') {
-                    this.url = '/ms/table/list';
-                };
-                this.$axios.post(this.url, {
-                    page: this.cur_page
-                }).then((res) => {
-                    this.tableData = res.data.list;
-                })
-            },
+            // getData() {
+            //     // 开发环境使用 easy-mock 数据，正式环境使用 json 文件
+            //     if (process.env.NODE_ENV === 'development') {
+            //         this.url = '/ms/table/list';
+            //     };
+            //     this.$axios.post(this.url, {
+            //         page: this.cur_page
+            //     }).then((res) => {
+            //         this.tableData = res.data.list;
+            //     })
+            // },
             search() {
                 this.is_search = true;
             },
@@ -179,6 +180,10 @@
                 this.tableData.splice(this.idx, 1);
                 this.$message.success('删除成功');
                 this.delVisible = false;
+            },
+            async getList(){
+                const {data:res} =await this.$http.get("user/info");
+                console.log(res);
             }
         }
     }

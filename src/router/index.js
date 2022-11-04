@@ -39,11 +39,11 @@ export default new Router({
                     component: resolve => require(['../components/page/MagUpload.vue'], resolve),
                     meta: { title: '地磁指纹库' }
                 },
-                {
-                    path: '/form',
-                    component: resolve => require(['../components/page/BaseForm.vue'], resolve),
-                    meta: { title: '基本表单' }
-                },
+                // {
+                //     path: '/form',
+                //     component: resolve => require(['../components/page/BaseForm.vue'], resolve),
+                //     meta: { title: '基本表单' }
+                // },
                 {
                     path: '/roleManagement',
                     component: resolve => require(['../components/page/RoleManagement.vue'], resolve),
@@ -65,6 +65,10 @@ export default new Router({
                     meta: { title: '账号管理' }
                 },
             ]
+        },
+        {
+            path:'/register',
+            component:resolve=>require(['../components/page/Register.vue'], resolve)
         },
         {
             path: '/login',

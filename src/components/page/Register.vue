@@ -1,24 +1,37 @@
 <template>
     <div class="login-wrap">
         <div class="ms-login">
-            <div class="ms-title">后台管理系统</div>
+            <div class="ms-title">新用户注册</div>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="ms-content">
-                <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="username">
-                        <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
+                <el-form-item prop="jobNum">
+                    <el-input v-model="ruleForm.jobNum" placeholder="请输入工号">
+                        <el-button slot="prepend" icon="el-icon-lx-people">工号</el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="ruleForm.password" >
-                        <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
+                    <el-input type="password" placeholder="请输入密码" v-model="ruleForm.password" >
+                        <el-button slot="prepend" icon="el-icon-lx-lock">密码</el-button>
+                    </el-input>
+                </el-form-item>
+                <el-form-item prop="username">
+                    <el-input  placeholder="请输入姓名" v-model="ruleForm.username">
+                        <el-button slot="prepend" icon="el-icon-user">姓名</el-button>
+                    </el-input>
+                </el-form-item>
+                <el-form-item prop="tel">
+                    <el-input  placeholder="请输入手机号" v-model="ruleForm.tel">
+                        <el-button slot="prepend" icon="el-icon-phone-outline">手机</el-button>
+                    </el-input>
+                </el-form-item>
+                <el-form-item prop="department">
+                    <el-input  placeholder="请输入部门" v-model="ruleForm.department">
+                        <el-button slot="prepend" icon="el-icon-postcard">部门</el-button>
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click="submitInfo">登录</el-button>
+                    <el-button type="primary" @click="submit">提交</el-button>
                 </div>
-                <div class="login-btn">
-                    <el-button type="primary" @click="register">注册</el-button>
-                </div>
+                
             </el-form>
         </div>
     </div>
@@ -29,12 +42,15 @@
         data: function(){
             return {
                 ruleForm: {
-                    username: '123',
-                    password: '123123'
+                    jobNum: '123',
+                    password: '123123',
+                    username:'abc',
+                    tel:'1311111111',
+                    department:'部门1'
                 },
                 rules: {
-                    username: [
-                        { required: true, message: '请输入用户名', trigger: 'blur' }
+                    jobNum: [
+                        { required: true, message: '请输入工号', trigger: 'blur' }
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
@@ -43,9 +59,9 @@
             }
         },
         methods: {
-            async submitInfo(){
+            async submit(){
                 console.log(this.ruleForm)
-                const {data:res} =await this.$http.post('user/login',this.ruleForm)
+                const {data:res} =await this.$http.post('user/register',this.ruleForm)
                 console.log(res.code);
                 if(res.code===200){
                     localStorage.setItem('username',this.ruleForm.username);
@@ -55,24 +71,7 @@
                 else {
                     console.log('error submit!!');
                 }
-            },
-            register(){
-                this.$router.push('/register');
             }
-
-            // submitForm(formName) {
-            //     axios.
-
-            //     this.$refs[formName].validate((valid) => {
-            //         if (valid) {
-            //             localStorage.setItem('ms_username',this.ruleForm.username);
-            //             this.$router.push('/');
-            //         } else {
-            //             console.log('error submit!!');
-            //             return false;
-            //         }
-            //     });
-            // }
         }
     }
 </script>
@@ -96,7 +95,7 @@
     .ms-login{
         position: absolute;
         left:50%;
-        top:50%;
+        top:45%;
         width:350px;
         margin:-190px 0 0 -175px;
         border-radius: 5px;
