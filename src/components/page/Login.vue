@@ -9,12 +9,12 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')">
+                    <el-input type="password" placeholder="password" v-model="ruleForm.password" >
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                    <el-button type="primary" @click="submitInfo">登录</el-button>
                 </div>
                 <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
@@ -41,17 +41,32 @@
             }
         },
         methods: {
-            submitForm(formName) {
-                this.$refs[formName].validate((valid) => {
-                    if (valid) {
-                        localStorage.setItem('ms_username',this.ruleForm.username);
-                        this.$router.push('/');
-                    } else {
-                        console.log('error submit!!');
-                        return false;
-                    }
-                });
+            async submitInfo(){
+                console.log(this.ruleForm)
+                const {data:res} =await this.$http.post('user/login',this.ruleForm)
+                console.log(res);
+                if(res.code===200){
+                    this.$router.push('/');
+                }
+                else {
+                    console.log('error submit!!');
+                    return false;
+                }
+
             }
+            // submitForm(formName) {
+            //     axios.
+
+            //     this.$refs[formName].validate((valid) => {
+            //         if (valid) {
+            //             localStorage.setItem('ms_username',this.ruleForm.username);
+            //             this.$router.push('/');
+            //         } else {
+            //             console.log('error submit!!');
+            //             return false;
+            //         }
+            //     });
+            // }
         }
     }
 </script>

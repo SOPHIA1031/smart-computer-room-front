@@ -13,7 +13,9 @@ Vue.config.productionTip = false
 Vue.use(ElementUI, {
     size: 'small'
 });
-Vue.prototype.$axios = axios;
+
+Vue.prototype.$http = axios;
+axios.defaults.baseURL="http://localhost:8081/"
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
@@ -34,6 +36,7 @@ router.beforeEach((to, from, next) => {
         }
     }
 })
+
 
 
 new Vue({
