@@ -67,18 +67,6 @@
 
                     {
                         icon: 'el-icon-lx-calendar',
-                        index: '3',
-                        title: '表单相关',
-                        subs: [
-                            {
-                                index: 'form',
-                                title: '基本表单'
-                            }
-                        ]
-                    },
-
-                    {
-                        icon: 'el-icon-lx-calendar',
                         index: '8',
                         title: '系统管理',
                         subs: [

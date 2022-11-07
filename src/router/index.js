@@ -26,7 +26,7 @@ export default new Router({
                 },
                 {
                     path: '/location',
-                    component: resolve => require(['../components/page/BaseCharts.vue'], resolve),
+                    component: resolve => require(['../components/page/Location.vue'], resolve),
                     meta: { title: '人员定位' }
                 },
                 {
