@@ -1,0 +1,68 @@
+卷 数据 的文件夹 PATH 列表
+卷序列号为 9A1B-A7EB
+D:.
+│  App.vue
+│  file.txt
+│  main.js
+│  
+├─assets
+│  │  logo.png
+│  │  vuetable.json
+│  │  
+│  ├─css
+│  │  │  color-dark.css
+│  │  │  icon.css
+│  │  │  main.css
+│  │  │  
+│  │  └─theme-green
+│  │      │  color-green.css
+│  │      │  index.css
+│  │      │  
+│  │      └─fonts
+│  │              element-icons.ttf
+│  │              element-icons.woff
+│  │              
+│  └─img
+│          img.jpg
+│          login-bg.jpg
+│          
+├─components
+│  ├─basePage
+│  │      403.vue
+│  │      404.vue
+│  │      DragDialog.vue
+│  │      DragList.vue
+│  │      Markdown.vue
+│  │      Permission.vue
+│  │      Tabs.vue
+│  │      VueEditor.vue
+│  │      
+│  ├─common
+│  │      bus.js
+│  │      directives.js
+│  │      Header.vue
+│  │      Home.vue
+│  │      Sidebar.vue
+│  │      Tags.vue
+│  │      
+│  └─page
+│          AccountManagement.vue
+│          AlarmCount.vue
+│          BaseCharts.vue
+│          BaseForm.vue
+│          BaseTable.vue
+│          Dashboard.vue
+│          DeviceManagement.vue
+│          Icon.vue
+│          inoutRecord.vue
+│          Location.vue
+│          Login.vue
+│          MagUpload.vue
+│          Register.vue
+│          RoleManagement.vue
+│          TaskManagement.vue
+│          UWBUpload.vue
+│          
+└─router
+        index.js
+        

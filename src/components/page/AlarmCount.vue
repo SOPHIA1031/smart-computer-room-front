@@ -2,7 +2,7 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-cascades"></i> 出入门统计</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-lx-cascades"></i> 告警统计</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="container">
@@ -16,9 +16,7 @@
                     </el-table-column>
                     <el-table-column prop="username" label="姓名"  width="200" align="center">
                     </el-table-column>
-                    <el-table-column prop="enterTime" label="进入时间" align="center">
-                    </el-table-column>
-                    <el-table-column prop="exitTime" label="离开时间"  align="center">
+                    <el-table-column prop="time" label="时间" align="center">
                     </el-table-column>
                 </el-table>
             </div>
@@ -36,46 +34,11 @@
         name: 'basetable',
         data() {
             return {
-                url: './vuetable.json',
                 tableData: [],
-                cur_page: 1,
-                multipleSelection: [],
-                select_cate: '',
-                select_word: '',
-                del_list: [],
-                is_search: false,
-                editVisible: false,
-                delVisible: false,
-                form: {
-                    name: '',
-                    date: '',
-                    address: ''
-                },
-                idx: -1
+                
             }
         },
         created() {
-        },
-        computed: {
-            data() {
-                return this.tableData.filter((d) => {
-                    let is_del = false;
-                    for (let i = 0; i < this.del_list.length; i++) {
-                        if (d.name === this.del_list[i].name) {
-                            is_del = true;
-                            break;
-                        }
-                    }
-                    if (!is_del) {
-                        if (d.address.indexOf(this.select_cate) > -1 &&
-                            (d.name.indexOf(this.select_word) > -1 ||
-                                d.address.indexOf(this.select_word) > -1)
-                        ) {
-                            return d;
-                        }
-                    }
-                })
-            }
         },
         methods: {
             // 分页导航

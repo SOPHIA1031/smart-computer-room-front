@@ -39,14 +39,14 @@
                 collapse: false,
                 items: [
                     {
-                        icon: 'el-icon-lx-home',
-                        index: 'dashboard',
-                        title: '系统首页'
+                        icon: 'el-icon-lx-cascades',
+                        index: 'inout',
+                        title: '出入门统计'
                     },
                     {
                         icon: 'el-icon-lx-cascades',
-                        index: 'inout',
-                        title: '出入门管理'
+                        index: 'alarm',
+                        title: '告警统计'
                     },
                     {
                         icon: 'el-icon-lx-copy',

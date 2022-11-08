@@ -1,24 +1,16 @@
 <template>
     <div class="header">
-        <!-- 折叠按钮 -->
+        <!-- sidebar -->
         <div class="collapse-btn" @click="collapseChage">
             <i class="el-icon-menu"></i>
         </div>
         <div class="logo">智慧机房管理系统</div>
         <div class="header-right">
             <div class="header-user-con">
-                <!-- 用户头像 -->
-                <div class="user-avator"><img src="../../assets/img/img.jpg"></div>
-
-                <!-- 用户名下拉菜单 -->
-                <el-dropdown class="user-name" trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        {{username}} <i class="el-icon-caret-bottom"></i>
-                    </span>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item divided  command="loginout">退出登录</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
+                <!-- <span class="username">
+                        {{username}}, 欢迎登录 
+                </span> -->
+                <el-button type="text " class="btn">退出登录</el-button>
             </div>
         </div>
     </div>
@@ -90,23 +82,12 @@
         height: 70px;
         align-items: center;
     }
-    .user-name{
+    .username{
         margin-left: 10px;
+        font-size: 15px;
     }
-    .user-avator{
+    .btn{
         margin-left: 20px;
-    }
-    .user-avator img{
-        display: block;
-        width:40px;
-        height:40px;
-        border-radius: 50%;
-    }
-    .el-dropdown-link{
-        color: #fff;
-        cursor: pointer;
-    }
-    .el-dropdown-menu__item{
-        text-align: center;
+        font-size: 15px;
     }
 </style>

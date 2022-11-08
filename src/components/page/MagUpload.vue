@@ -9,6 +9,7 @@
             <div class="upload">
                 <el-upload
                     class="upload-demo"
+                    style="margin-bottom:20px"
                     drag
                     action="http://localhost:8081/upload/mag"
                     accept=".csv,.CSV"
@@ -20,29 +21,37 @@
                     :on-erroe="handleErr"
                     :data="type">
                     <i class="el-icon-upload"></i>
-                    <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                    <div class="el-upload__tip" slot="tip">请上传csv格式文件</div>
+                    <div class="el-upload__text">更新指纹库请将文件拖到此处，或<em>点击上传</em></div>
+                    
                 </el-upload>
             </div>
-            <el-table
-                :data="tableData"
-                border
-                style="width: 60%;margin: auto;">
-                <el-table-column
-                prop="date"
-                label="上传时间"
-                width="180">
-                </el-table-column>
-                <el-table-column
-                prop="filename"
-                label="文件名"
-                width="180">
-                </el-table-column>
-                <el-table-column
-                prop="user"
-                label="上传用户">
-                </el-table-column>
-            </el-table>
+            <div class="list">
+                <div class="tip">文件上传历史:</div>
+                <el-table
+                    :data="tableData"
+                    border
+                    :row-style="{height:'35px'}"
+                    style="font-size:15px">
+                    <el-table-column
+                    prop="date"
+                    label="上传时间"
+                    width="180"
+                    align="center">
+                    </el-table-column>
+                    <el-table-column
+                    prop="filename"
+                    label="文件名"
+                    width="180"
+                    align="center">
+                    </el-table-column>
+                    <el-table-column
+                    prop="user"
+                    label="上传用户"
+                    align="center">
+                    </el-table-column>
+                </el-table>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -53,7 +62,7 @@
         name: 'upload',
         data(){
             return {
-                tableData:[{date:"2022-11",filename:"file.csv",user:"001"}]
+                tableData:[{date:"2022-11",filename:"file.csv",user:"001"},{date:"2022-11",filename:"file.csv",user:"002"},{date:"2022-11",filename:"file.csv",user:"003"}]
             }
         },
         methods:{
@@ -78,12 +87,15 @@
 </script>
 
 <style scoped>
-    .content-title{
-        font-weight: 400;
-        line-height: 50px;
-        margin: 10px 0;
-        font-size: 22px;
-        color: #1f2f3d;
-    }
+.upload,.list {
+    width: 60%;
+    margin: auto;
+}
+
+.tip{
+    margin-bottom: 15px;
+    color:  #606266;
+    /* font-weight: 500; */
+}
     
 </style>

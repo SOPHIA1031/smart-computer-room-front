@@ -7,7 +7,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/dashboard'
+            redirect: '/inout'
         },
         {
             path: '/',
@@ -15,14 +15,14 @@ export default new Router({
             meta: { title: '自述文件' },
             children:[
                 {
-                    path: '/dashboard',
-                    component: resolve => require(['../components/page/Dashboard.vue'], resolve),
-                    meta: { title: '系统首页' }
-                },
-                {
                     path: '/inout',
                     component: resolve => require(['../components/page/inoutRecord.vue'], resolve),
-                    meta: { title: '出入门记录' }
+                    meta: { title: '出入门统计' }
+                },
+                {
+                    path: '/alarm',
+                    component: resolve => require(['../components/page/AlarmCount.vue'], resolve),
+                    meta: { title: '告警统计' }
                 },
                 {
                     path: '/location',
