@@ -6,25 +6,28 @@
             </el-breadcrumb>
         </div>
         <div class="container">
-            <div class="handle-box">
-                <el-button type="primary" icon="el-icon-plus" class="handle-del mr10" @click="addReg">新增限制区域</el-button>
-                <el-input v-model="input" placeholder="根据工号搜索" class="handle-input mr10"></el-input>
-                <el-button type="primary" icon="search" @click="search">搜索</el-button>
+            <div class="inContainer">
+                <div class="handle-box">
+                    <el-button type="primary" icon="el-icon-plus" class="handle-del mr10" @click="addReg">新增限制区域</el-button>
+                    <el-input v-model="input" placeholder="根据工号搜索" class="handle-input mr10"></el-input>
+                    <el-button type="primary" icon="search" @click="search">搜索</el-button>
+                </div>
+                <el-table :data="tableData" border class="table" ref="multipleTable" >
+                    <el-table-column prop="jobNum" label="工号"  width="200" align="center">
+                    </el-table-column>
+                    <el-table-column prop="username" label="姓名" width="200" align="center">
+                    </el-table-column>
+                    <el-table-column prop="limitReg" label="区域限制坐标（左上，右上，左下，右下）" width="400" align="center">
+                    </el-table-column>
+                    <el-table-column label="操作" align="center">
+                        <template slot-scope="scope">
+                            <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                            <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
             </div>
-            <el-table :data="data" border class="table" ref="multipleTable" >
-                <el-table-column prop="jobNum" label="工号"  width="150" align="center">
-                </el-table-column>
-                <el-table-column prop="username" label="姓名" width="150" align="center">
-                </el-table-column>
-                <el-table-column prop="limitReg" label="区域限制坐标（左上，右上，左下，右下）" align="center">
-                </el-table-column>
-                <el-table-column label="操作" width="180" align="center">
-                    <template slot-scope="scope">
-                        <el-button type="text" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-                        <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
+            
             <div class="pagination">
                 <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
                 </el-pagination>
@@ -227,5 +230,9 @@
     }
     .mr10{
         margin-right: 10px;
+    }
+    .inContainer{
+        width: 60%;
+        margin: auto;
     }
 </style>
