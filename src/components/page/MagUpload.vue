@@ -9,7 +9,7 @@
             <div class="upload">
                 <el-upload
                     class="upload-demo"
-                    style="margin-bottom:20px"
+                    style="margin-bottom:20px;margin-left: 30%;"
                     drag
                     action="http://localhost:8081/upload/mag"
                     accept=".csv,.CSV"

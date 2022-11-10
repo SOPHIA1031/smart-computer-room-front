@@ -10,7 +10,7 @@
                 <!-- <span class="username">
                         {{username}}, 欢迎登录 
                 </span> -->
-                <el-button type="text " class="btn">退出登录</el-button>
+                <el-button type="text " class="btn" @click="logout">退出登录</el-button>
             </div>
         </div>
     </div>
@@ -22,28 +22,25 @@
             return {
                 collapse: false,
                 fullscreen: false,
-                name: 'linxin',
+                name: 'default',
                 message: 2
             }
         },
         computed:{
             username(){
-                let username = localStorage.getItem('ms_username');
+                let username = sessionStorage.getItem('jobNum');
                 return username ? username : this.name;
             }
         },
         methods:{
-            // 用户名下拉菜单选择事件
-            handleCommand(command) {
-                if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
-                    this.$router.push('/login');
-                }
-            },
             // 侧边栏折叠
             collapseChage(){
                 this.collapse = !this.collapse;
                 bus.$emit('collapse', this.collapse);
+            },
+            logout(){
+                this.$router.push("/login");
+                sessionStorage.removeItem("jobNum")
             }
         },
         mounted(){

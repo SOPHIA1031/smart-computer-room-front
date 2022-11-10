@@ -48,7 +48,7 @@
                 const {data:res} =await this.$http.post('user/login',this.ruleForm)
                 console.log(res.code);
                 if(res.code===200){
-                    localStorage.setItem('username',this.ruleForm.username);
+                    sessionStorage.setItem('jobNum',this.ruleForm.username);
                     this.$router.push('/');
                     // console.log("aa");
                 }
