@@ -29,7 +29,7 @@
             </div>
             
             <div class="pagination">
-                <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="100">
                 </el-pagination>
             </div>
         </div>
@@ -181,9 +181,14 @@
                     return;
                 }
                 
-                const {data:res} = this.$http.post("region/add",{params:this.form})
+                const {data:res} = await this.$http.post("region/add",this.form)
+
+                console.log(res)
                 if(res.code===200){
                     this.$message.success("新增限制区域成功");
+                }
+                else if(res.msg=="not exist"){
+                    this.$message.error("该用户不存在，请重试!");
                 }
                 else{
                     this.$message.error("新增限制区域失败，请重试!");
