@@ -159,6 +159,15 @@
                     return;
                 }
                 
+<<<<<<< HEAD
+                // const {data:res} = this.$http.post("region/add",{params:this.form})
+                // if(res.code===200){
+                //     this.$message.success("新增限制区域成功");
+                // }
+                // else{
+                //     this.$message.error("新增限制区域失败，请重试!");
+                // }
+=======
                 const {data:res} = await this.$http.post("region/add",this.form)
 
                 // console.log(res)
@@ -174,14 +183,23 @@
                 else{
                     this.$message.error("新增限制区域失败，请重试!");
                 }
+>>>>>>> 40eaba4d1eb097197a66b7aef0b85f0f353bf14d
                 
                 this.addVisible=false;
             },
             // 检查输入是否符合条件
             checkForm(){
-                if(this.form.ltX<=this.form.rtX&&this.form.ltY>=this.form.lbY&&
-                    this.form.rbX>=this.form.lbX&&this.form.rbY<=this.form.rtY){
-                    return true;
+                if(this.form.ltX<this.form.rtX&&this.form.ltY>this.form.lbY&&                 
+                    this.form.rbX>this.form.lbX&&this.form.rbY<this.form.rtY){    
+                    var reg=/^-?\d+$/;
+                    var pattern=new RegExp(reg);
+                    console.log(pattern.test(this.form.ltX));
+                    if(pattern.test(this.form.ltX)&&pattern.test(this.form.lbX)&&pattern.test(this.form.ltY)&&
+                        pattern.test(this.form.lbY)&&pattern.test(this.form.rtX)&&pattern.test(this.form.rbX)&&
+                            pattern.test(this.form.rtY)&&pattern.test(this.form.rbY)){
+                                return true;
+                            }
+                    return false;
                 }
                 return false;
             }
