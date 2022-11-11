@@ -61,7 +61,7 @@ export default new Router({
                 },
                 {
                     path: '/accountManagement',
-                    component: resolve => require(['../components/page/DeviceManagement.vue'], resolve),
+                    component: resolve => require(['../components/page/AccountManagement.vue'], resolve),
                     meta: { title: '账号管理' }
                 },
             ]

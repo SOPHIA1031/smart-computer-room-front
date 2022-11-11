@@ -7,20 +7,25 @@
         </div>
         <div class="container">
             <div class="inContainer">
+                <div class="handle-box" style="text-align: center;">
+                    <el-input v-model="input" placeholder="筛选工号" class="handle-input mr10"></el-input>
+                    <el-button type="primary" icon="search" @click="search">搜索</el-button>
+                </div>
+
                 <el-table :data="data" border class="table" ref="multipleTable" @selection-change="handleSelectionChange">
                 <el-table-column prop="jobNum" label="工号" sortable width="250" align="center">
                 </el-table-column>
                 <el-table-column prop="username" label="姓名" width="250" align="center">
                 </el-table-column>
-                <el-table-column prop="mobile" label="手机" :formatter="formatter" align="center">
+                <el-table-column prop="mobile" label="手机"  align="center">
                 </el-table-column>
-                <el-table-column prop="department" label="部门" :formatter="formatter" align="center">
+                <el-table-column prop="department" label="部门" align="center">
                 </el-table-column>
                 </el-table>
             </div> 
             
             <div class="pagination">
-                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="100">
                     </el-pagination>
             </div>
         </div>
@@ -47,7 +52,7 @@
                 this.getData(val);
             },
             async getData(val){
-                const{data:res} =await this.$http.get("alarm",{params:{page:val,pageSize:this.pageSize}})
+                const{data:res} =await this.$http.get("user/account",{params:{jobNum:this.input,page:val,pageSize:this.pageSize}})
                 console.log(res)
                 if(res.code===200){
                     this.data=[];
