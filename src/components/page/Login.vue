@@ -44,13 +44,12 @@
         },
         methods: {
             async submitInfo(){
-                console.log(this.ruleForm)
                 const {data:res} =await this.$http.post('user/login',this.ruleForm)
-                console.log(res.code);
                 if(res.code===200){
+                    console.log(res);
                     sessionStorage.setItem('jobNum',this.ruleForm.username);
+                    sessionStorage.setItem('role',res.data);
                     this.$router.push('/');
-                    // console.log("aa");
                 }
                 else {
                     console.log('error submit!!');
@@ -59,20 +58,6 @@
             register(){
                 this.$router.push('/register');
             }
-
-            // submitForm(formName) {
-            //     axios.
-
-            //     this.$refs[formName].validate((valid) => {
-            //         if (valid) {
-            //             localStorage.setItem('ms_username',this.ruleForm.username);
-            //             this.$router.push('/');
-            //         } else {
-            //             console.log('error submit!!');
-            //             return false;
-            //         }
-            //     });
-            // }
         }
     }
 </script>

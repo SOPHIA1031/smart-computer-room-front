@@ -18,15 +18,25 @@ Vue.prototype.$http = axios;
 axios.defaults.baseURL="http://localhost:8081/"
 
 //使用钩子函数对路由进行权限跳转
-// router.beforeEach((to, from, next) => {
-//     const role = localStorage.getItem('ms_username');
-//     if (!role && to.path !== '/login') {
-//         next('/login');
-//     } else if (to.meta.permission) {
-//         // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
-//         role === '123' ? next() : next('/403');
-//     }
-// })
+router.beforeEach((to, from, next) => {
+    const role = sessionStorage.getItem('role');
+    console.log(role)
+    console.log(to.path)
+    if(to.path=="/login"){
+        next();
+    }
+    else if(role=="2"){
+        if(to.path=="/accountManagement"||to.path=="/roleManagement"||to.path=="/taskManagement"||to.path=="/deviceManagement"){
+            next('/403');
+        }
+        else{
+            next();
+        }
+    }
+    else{
+        next();
+    }
+})
 
 
 

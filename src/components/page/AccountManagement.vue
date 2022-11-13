@@ -25,7 +25,7 @@
             </div> 
             
             <div class="pagination">
-                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="100">
+                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="totalPage">
                     </el-pagination>
             </div>
         </div>
@@ -39,10 +39,12 @@
             return {
                 data: [],
                 input:"",
-                pageSize:20
+                pageSize:20,
+                totalPage:20
             }
         },
         created() {
+            this.getPage(1);
             this.getData(1);
         },
         methods: {
@@ -71,7 +73,17 @@
                 }
             },
             search(){
+                this.getPage(1);
                 this.getData(1);
+            },
+            async getPage(val){
+                const{data:res} =await this.$http.get("user/total",{params:{jobNum:this.input,page:val,pageSize:this.pageSize}})
+                if(res.code===200){
+                    this.totalPage=res.data*10;
+                }
+                else{
+                    this.$message.error("获取分页数据错误！");
+                }
             }
         }
     }

@@ -14,11 +14,16 @@
                 </el-table-column>
                 <el-table-column prop="role" label="角色" align="center">
                 </el-table-column>
+                <el-table-column label="操作" align="center">
+                        <template slot-scope="scope">
+                            <el-button type="text" icon="el-icon-delete" class="green" @click="changeRole(scope.$index, scope.row)">角色变更</el-button>
+                        </template>
+                    </el-table-column>
                 </el-table>
             </div> 
             
             <div class="pagination">
-                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="100">
+                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="totalPage">
                     </el-pagination>
             </div>
         </div>
@@ -32,10 +37,12 @@
             return {
                 data: [],
                 input:"",
-                pageSize:20
+                pageSize:20,
+                totalPage:10
             }
         },
         created() {
+            this.getPage(1);
             this.getData(1);
         },
         methods: {
@@ -71,7 +78,29 @@
                 }
             },
             search(){
+                this.getPage(1);
                 this.getData(1);
+            },
+            async getPage(val){
+                const{data:res} =await this.$http.get("user/total",{params:{jobNum:this.input,page:val,pageSize:this.pageSize}})
+                if(res.code===200){
+                    this.totalPage=res.data*10;
+                }
+                else{
+                    this.$message.error("获取分页数据错误！");
+                }
+            },
+            async changeRole(index,row){
+                let curRole=sessionStorage.getItem("role");
+                if(curRole=="1"){
+                    const {data:res} =await this.$http.post("user/role/update",{jobNum:row.jobNum});
+                    if(res.code===200){
+                        this.totalPage=res.data*10;
+                    }
+                    else{
+                        this.$message.error("获取分页数据错误！");
+                    }
+                }
             }
         }
     }

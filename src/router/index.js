@@ -77,6 +77,10 @@ export default new Router({
         {
             path: '*',
             redirect: '/404'
+        },
+        {
+            path:'/403',
+            component: resolve => require(['../components/basePage/403.vue'], resolve)
         }
     ]
 })

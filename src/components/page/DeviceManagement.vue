@@ -26,7 +26,7 @@
                     </el-table-column>
                 </el-table>
                 <div class="pagination">
-                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="1000">
+                    <el-pagination background @current-change="handleCurrentChange" layout="prev, pager, next" :total="totalPage">
                     </el-pagination>
                 </div>
             </div>
@@ -69,10 +69,12 @@ import { resolveObjectURL } from 'buffer';
                 addVisible:false,
                 form:{jobNum:"",deviceId:""},
                 input:"",
-                idx:0
+                idx:0,
+                totalPage:10
             }
         },
         created() {
+            this.getPage(1);
             this.getData(1);
         },
         methods: {
@@ -106,6 +108,9 @@ import { resolveObjectURL } from 'buffer';
                 if(res.code===200){
                     this.$message.success("设备绑定成功");
                 }
+                else if(res.msg=="userErr"){
+                    this.$message.error("该用户不存在，请重试!");
+                }
                 else if(res.msg=="addErr"){
                     this.$message.error("设备绑定失已存在，请重试!");
                 }
@@ -131,7 +136,18 @@ import { resolveObjectURL } from 'buffer';
                 }
 
                 
-            }
+            },
+            async getPage(val){
+                this.tableData=[]
+                const {data:res} = await this.$http.get("device/total",{params:{jobNum:this.input,page:val,pageSize: this.pageSize}})
+                console.log(res)
+                if(res.code===200){
+                    this.totalPage=res.data*10;
+                }
+                else{
+                    this.$message.error("获取数据失败")
+                }
+            },
         }
     }
 
