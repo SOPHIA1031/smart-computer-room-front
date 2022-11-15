@@ -17,10 +17,15 @@
                 </el-table-column>
                 <el-table-column prop="username" label="姓名" width="250" align="center">
                 </el-table-column>
-                <el-table-column prop="mobile" label="手机"  align="center">
+                <el-table-column prop="tel" label="手机"  align="center">
                 </el-table-column>
                 <el-table-column prop="department" label="部门" align="center">
                 </el-table-column>
+                <el-table-column label="操作" width="180" align="center">
+                        <template slot-scope="scope">
+                            <el-button type="text" icon="el-icon-delete" class="red" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                        </template>
+                    </el-table-column>
                 </el-table>
             </div> 
             
@@ -40,7 +45,8 @@
                 data: [],
                 input:"",
                 pageSize:20,
-                totalPage:20
+                totalPage:20,
+                idx:0
             }
         },
         created() {
@@ -83,6 +89,22 @@
                 }
                 else{
                     this.$message.error("获取分页数据错误！");
+                }
+            },
+            async handleDelete(index, row){
+                // console.log(row.jobNum==sessionStorage.getItem("jobNum"))
+                const {data:res} = await this.$http.get("user/del",{params:{jobNum:row.jobNum}})
+                if(res.code===200){
+                    this.$message.success("删除成功")
+                    this.idx=index
+                    this.data.splice(this.idx, 1);
+                    if(row.jobNum==sessionStorage.getItem("jobNum")){
+                        sessionStorage.clear();
+                        this.$router.push("/login");
+                    }
+                }
+                else{
+                    this.$message.error("删除出现错误");
                 }
             }
         }

@@ -24,8 +24,15 @@
                     <div class="el-upload__text">更新指纹库请将文件拖到此处，或<em>点击上传</em></div>
                     
                 </el-upload>
+                <div style="margin-left: 30%;">
+                    <span class="tip">生成指纹库方式:   </span>
+                    <el-button type="primary" style="margin-left: 10px;">方式一</el-button>
+                    <el-button type="primary">方式二</el-button>
+                    <el-button type="primary">方式三</el-button>
+                </div>
             </div>
-            <div class="list">
+            
+            <!-- <div class="list">
                 <div class="tip">文件上传历史:</div>
                 <el-table
                     :data="tableData"
@@ -50,7 +57,7 @@
                     align="center">
                     </el-table-column>
                 </el-table>
-            </div>
+            </div> -->
             
         </div>
     </div>

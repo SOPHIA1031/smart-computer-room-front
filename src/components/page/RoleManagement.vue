@@ -12,11 +12,11 @@
                 </el-table-column>
                 <el-table-column prop="username" label="姓名" width="300" align="center">
                 </el-table-column>
-                <el-table-column prop="role" label="角色" align="center">
+                <el-table-column prop="role" label="角色"  sortable align="center">
                 </el-table-column>
                 <el-table-column label="操作" align="center">
                         <template slot-scope="scope">
-                            <el-button type="text" icon="el-icon-delete" class="green" @click="changeRole(scope.$index, scope.row)">角色变更</el-button>
+                            <el-button type="text" icon="el-icon-user-solid" class="green" @click="diaShow(scope.$index, scope.row)">角色变更</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -27,6 +27,20 @@
                     </el-pagination>
             </div>
         </div>
+
+        <el-dialog
+            title="提示"
+            :visible.sync="dialogVisible"
+            width="30%"
+            >
+            <span>确认将角色进行变更？</span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="changeRole">确 定</el-button>
+            </span>
+        </el-dialog>
+
+        
     </div>
 </template>
 
@@ -38,7 +52,9 @@
                 data: [],
                 input:"",
                 pageSize:20,
-                totalPage:10
+                totalPage:10,
+                dialogVisible:false,
+                rowInfo:null
             }
         },
         created() {
@@ -90,18 +106,27 @@
                     this.$message.error("获取分页数据错误！");
                 }
             },
-            async changeRole(index,row){
+            diaShow(index,row){
+                this.dialogVisible=true;
+                this.rowInfo=row
+            },
+            async changeRole(){
                 let curRole=sessionStorage.getItem("role");
                 if(curRole=="1"){
-                    const {data:res} =await this.$http.post("user/role/update",{jobNum:row.jobNum});
+                    const {data:res} =await this.$http.post("user/role/update",{jobNum:this.rowInfo.jobNum});
+
                     if(res.code===200){
-                        this.totalPage=res.data*10;
+                        this.getData(1)
+                        this.$message.success("角色变更成功");
                     }
                     else{
-                        this.$message.error("获取分页数据错误！");
+                        this.$message.error("发生错误！");
                     }
+                    
                 }
-            }
+                this.dialogVisible=false;
+            },
+            
         }
     }
 
