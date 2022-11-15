@@ -86,11 +86,12 @@ import { resolveObjectURL } from 'buffer';
             async getData(val){
                 this.tableData=[]
                 const {data:res} = await this.$http.get("device",{params:{jobNum:this.input,page:val,pageSize: this.pageSize}})
-                console.log(res)
+                // console.log(res)
                 if(res.code===200){
                     for(var i=0;i<res.data.length;i++){
                         this.tableData.push(res.data[i])
                     }
+
                 }
                 else{
                     this.$message.error("获取数据失败")
@@ -107,6 +108,7 @@ import { resolveObjectURL } from 'buffer';
 
                 if(res.code===200){
                     this.$message.success("设备绑定成功");
+                    this.getData(1)
                 }
                 else if(res.msg=="userErr"){
                     this.$message.error("该用户不存在，请重试!");

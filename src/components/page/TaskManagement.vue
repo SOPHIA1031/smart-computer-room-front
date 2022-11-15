@@ -180,11 +180,11 @@
             },
             // 检查输入是否符合条件
             checkForm(){
-                if(this.form.ltX<this.form.rtX&&this.form.ltY>this.form.lbY&&                 
-                    this.form.rbX>this.form.lbX&&this.form.rbY<this.form.rtY){    
+                if(this.form.ltX<=this.form.rtX&&this.form.ltY>=this.form.lbY&&                 
+                    this.form.rbX>=this.form.lbX&&this.form.rbY<=this.form.rtY){    
                     var reg=/^-?\d+$/;
                     var pattern=new RegExp(reg);
-                    console.log(pattern.test(this.form.ltX));
+                    console.log("pattern",pattern.test(this.form.ltX));
                     if(pattern.test(this.form.ltX)&&pattern.test(this.form.lbX)&&pattern.test(this.form.ltY)&&
                         pattern.test(this.form.lbY)&&pattern.test(this.form.rtX)&&pattern.test(this.form.rbX)&&
                             pattern.test(this.form.rtY)&&pattern.test(this.form.rbY)){

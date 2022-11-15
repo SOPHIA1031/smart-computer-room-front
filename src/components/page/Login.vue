@@ -49,7 +49,7 @@
                     console.log(res);
                     sessionStorage.setItem('jobNum',this.ruleForm.username);
                     sessionStorage.setItem('role',res.data);
-                    this.$router.push('/');
+                    this.$router.push('/inout');
                 }
                 else {
                     console.log('error submit!!');
