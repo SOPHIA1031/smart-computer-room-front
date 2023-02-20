@@ -75,6 +75,7 @@
                 },2000)
             },
             stopLoc(){
+                console.log("stop");
                 this.taskStatus=false;
                 clearInterval(this.timer);
             }

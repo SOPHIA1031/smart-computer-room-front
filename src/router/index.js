@@ -12,7 +12,7 @@ export default new Router({
         {
             path: '/',
             component: resolve => require(['../components/common/Home.vue'], resolve),
-            meta: { title: '自述文件' },
+            meta: { title: '主页' },
             children:[
                 {
                     path: '/inout',
