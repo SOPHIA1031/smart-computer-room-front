@@ -30,6 +30,16 @@ export default new Router({
                     meta: { title: '人员定位' }
                 },
                 {
+                    path: '/pointLoc',
+                    component: resolve => require(['../components/page/StaticWorkPoint.vue'], resolve),
+                    meta: { title: '静态人员定位' }
+                },
+                {
+                    path: '/history',
+                    component: resolve => require(['../components/page/HistoryTrajectory.vue'],resolve),
+                    meta: { title: '历史轨迹查询'}
+                },
+                {
                     path: '/UWBUpload',
                     component: resolve => require(['../components/page/UWBUpload.vue'], resolve),
                     meta: { title: 'UWB指纹库' }
@@ -39,11 +49,6 @@ export default new Router({
                     component: resolve => require(['../components/page/MagUpload.vue'], resolve),
                     meta: { title: '地磁指纹库' }
                 },
-                // {
-                //     path: '/form',
-                //     component: resolve => require(['../components/page/BaseForm.vue'], resolve),
-                //     meta: { title: '基本表单' }
-                // },
                 {
                     path: '/roleManagement',
                     component: resolve => require(['../components/page/RoleManagement.vue'], resolve),

@@ -52,7 +52,7 @@
             },
             async getData(val){
                 const{data:res} =await this.$http.get("alarm",{params:{userId:this.input,page:val,pageSize:this.pageSize}})
-                console.log(res)
+                // console.log(res)
                 if(res.code===200){
                     this.tableData=[];
                     if(res.data.length===0){

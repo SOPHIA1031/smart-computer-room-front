@@ -1,11 +1,14 @@
 <template>
-    <div class="table">
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-lx-cascades"></i> 基础表格</el-breadcrumb-item>
-            </el-breadcrumb>
-        </div>
         <div class="container">
+            <div class="table">
+            <el-alert
+                title="限制区域形状为长方形，输入坐标以左上点为坐标系原点"
+                type="success"
+                show-icon
+                style="margin-bottom: 20px;">
+
+            </el-alert>
+
             <div class="inContainer">
                 <div class="handle-box">
                     <el-button type="primary" icon="el-icon-plus" class="handle-del mr10" @click="addReg">新增限制区域</el-button>
@@ -112,7 +115,7 @@
             async getData(val){
                 this.tableData=[]
                 const {data:res} = await this.$http.get("region",{params:{jobNum:this.input,page:val,pageSize: this.pageSize}})
-                console.log(res)
+                // console.log(res)
                 if(res.code===200){
                     for(let i=0;i<res.data.length;i++){
                         this.tableData.push(res.data[i])
@@ -126,7 +129,7 @@
             search() {
                 this.getPage(1);
                 this.getData(1);
-                console.log(this.input)
+                // console.log(this.input)
             },
             async handleDelete(index, row) {
                 // this.delVisible = true;
@@ -184,7 +187,7 @@
                     this.form.rbX>=this.form.lbX&&this.form.rbY<=this.form.rtY){    
                     var reg=/^-?\d+$/;
                     var pattern=new RegExp(reg);
-                    console.log("pattern",pattern.test(this.form.ltX));
+                    // console.log("pattern",pattern.test(this.form.ltX));
                     if(pattern.test(this.form.ltX)&&pattern.test(this.form.lbX)&&pattern.test(this.form.ltY)&&
                         pattern.test(this.form.lbY)&&pattern.test(this.form.rtX)&&pattern.test(this.form.rbX)&&
                             pattern.test(this.form.rtY)&&pattern.test(this.form.rbY)){

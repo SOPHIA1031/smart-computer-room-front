@@ -14,13 +14,15 @@ Vue.use(ElementUI, {
 });
 
 Vue.prototype.$http = axios;
+// axios.defaults.baseURL="http://124.70.13.200:8081/"
 axios.defaults.baseURL="http://localhost:8081/"
+axios.defaults.withCredentials=false
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
     const role = sessionStorage.getItem('role');
-    console.log(role)
-    console.log(to.path)
+    // console.log(role)
+    // console.log(to.path)
     if(to.path=="/login"){
         next();
     }

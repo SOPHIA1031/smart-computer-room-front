@@ -42,11 +42,11 @@
         data: function(){
             return {
                 ruleForm: {
-                    jobNum: '123',
-                    password: '123123',
-                    username:'abc',
-                    tel:'1311111111',
-                    department:'部门1'
+                    jobNum: '',
+                    password: '',
+                    username:'',
+                    tel:'',
+                    department:''
                 },
                 rules: {
                     jobNum: [
@@ -60,16 +60,16 @@
         },
         methods: {
             async submit(){
-                console.log(this.ruleForm)
+                // console.log(this.ruleForm)
                 const {data:res} =await this.$http.post('user/register',this.ruleForm)
-                console.log(res.code);
+                // console.log(res.code);
                 if(res.code===200){
                     localStorage.setItem('username',this.ruleForm.username);
                     this.$router.push('/');
-                    // console.log("aa");
                 }
                 else {
-                    console.log('error submit!!');
+                    this.$message.error("注册失败，请重新注册！")
+                    // console.log('error submit!!');
                 }
             }
         }

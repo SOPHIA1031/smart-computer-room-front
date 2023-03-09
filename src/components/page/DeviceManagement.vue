@@ -142,7 +142,7 @@ import { resolveObjectURL } from 'buffer';
             async getPage(val){
                 this.tableData=[]
                 const {data:res} = await this.$http.get("device/total",{params:{jobNum:this.input,page:val,pageSize: this.pageSize}})
-                console.log(res)
+                // console.log(res)
                 if(res.code===200){
                     this.totalPage=res.data*10;
                 }

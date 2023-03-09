@@ -44,23 +44,28 @@
                         title: '出入门统计'
                     },
                     {
-                        icon: 'el-icon-lx-cascades',
+                        icon: 'el-icon-message-solid',
                         index: 'alarm',
                         title: '告警统计'
                     },
                     {
-                        icon: 'el-icon-lx-copy',
+                        icon: 'el-icon-map-location',
                         index: 'location',
                         title: '人员定位'
                     },
                     {
-                        icon: 'el-icon-lx-copy',
+                        icon:'el-icon-lx-copy',
+                        index:'history',
+                        title:'历史轨迹查询'
+                    
+                    },
+                    {
+                        icon: 'el-icon-folder',
                         index: 'UWBUpload',
                         title: 'UWB指纹库',
                     },
-
                     {
-                        icon: 'el-icon-lx-copy',
+                        icon: 'el-icon-folder',
                         index: 'magUpload',
                         title: '地磁指纹库',
                     },
@@ -87,6 +92,11 @@
                                 title: '账号管理'
                             }
                         ]
+                    },
+                    {
+                        icon: 'el-icon-map-location',
+                        index: 'pointLoc',
+                        title: '静态点定位'
                     },
                 ]
             }

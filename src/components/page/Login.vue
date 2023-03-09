@@ -4,12 +4,12 @@
             <div class="ms-title">智慧机房后台管理系统</div>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="username">
+                    <el-input v-model="ruleForm.username" placeholder="请输入工号">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
-                    <el-input type="password" placeholder="password" v-model="ruleForm.password" >
+                    <el-input type="password" placeholder="请输入密码" v-model="ruleForm.password" >
                         <el-button slot="prepend" icon="el-icon-lx-lock"></el-button>
                     </el-input>
                 </el-form-item>
@@ -29,8 +29,8 @@
         data: function(){
             return {
                 ruleForm: {
-                    username: '123',
-                    password: '123123'
+                    username: '',
+                    password: ''
                 },
                 rules: {
                     username: [
@@ -46,13 +46,12 @@
             async submitInfo(){
                 const {data:res} =await this.$http.post('user/login',this.ruleForm)
                 if(res.code===200){
-                    console.log(res);
                     sessionStorage.setItem('jobNum',this.ruleForm.username);
                     sessionStorage.setItem('role',res.data);
                     this.$router.push('/inout');
                 }
                 else {
-                    console.log('error submit!!');
+                    this.$message.error("账号或密码错误，请重试");
                 }
             },
             register(){

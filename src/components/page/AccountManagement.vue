@@ -61,7 +61,7 @@
             },
             async getData(val){
                 const{data:res} =await this.$http.get("user/account",{params:{jobNum:this.input,page:val,pageSize:this.pageSize}})
-                console.log(res)
+                // console.log(res)
                 if(res.code===200){
                     this.data=[];
                     if(res.data.length===0){

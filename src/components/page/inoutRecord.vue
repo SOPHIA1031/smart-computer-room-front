@@ -8,13 +8,13 @@
         <div class="container">
             <div class="inContainer">
                 <div class="handle-box" style="text-align: center;">
-                    <el-input v-model="input" placeholder="筛选工号" class="handle-input mr10"></el-input>
+                    <el-input v-model="input" placeholder="筛选设备id" class="handle-input mr10"></el-input>
                     <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 </div>
                 <el-table :data="tableData" :header-cell-style="{textAlign: 'center'}" :cell-style="{ textAlign: 'center' }" border class="table" ref="multipleTable" @selection-change="handleSelectionChange">
-                    <el-table-column prop="jobNum" label="工号"  width="150" align="center">
+                    <el-table-column prop="deviceId" label="设备id"  width="150" align="center">
                     </el-table-column>
-                    <el-table-column prop="username" label="姓名"  width="200" align="center">
+                    <el-table-column prop="jobNum" label="工号"  width="150" align="center">
                     </el-table-column>
                     <el-table-column prop="inoutTime" label="出入时间" align="center">
                     </el-table-column>
@@ -49,7 +49,7 @@
             }
         },
         created() {
-            // this.getPage(1);
+            this.getPage(1);
             this.getData(1);
         },
         methods: {
@@ -60,14 +60,14 @@
                 this.getData(val);
             },
             async getData(val){
-                const {data:res}=await this.$http.get("inout", {params: {userId:this.input,page:val,pageSize:this.pageSize}});
+                const {data:res}=await this.$http.get("inout", {params: {deviceId:this.input,page:val,pageSize:this.pageSize}});
                 // console.log(res);
                 if(res.code===200){
                     this.tableData=[];
                     for (let i=0;i<res.data.length;i++){
                         this.tableData.push(res.data[i]);
                     }
-                    console.log(this.tableData)
+                    // console.log(this.tableData)
                 }
                 else{
                     this.$message.error("访问接口出错!");
@@ -75,18 +75,18 @@
 
             },
             search(){
-                // this.getPage(1);
+                this.getPage(1);
                 this.getData(1);
             },
-            // async getPage(val){
-            //     const{data:res} =await this.$http.get("inout/total",{params:{jobNum:this.input,page:val,pageSize:this.pageSize}})
-            //     if(res.code===200){
-            //         this.totalPage=res.data*10;
-            //     }
-            //     else{
-            //         this.$message.error("获取分页数据错误！");
-            //     }
-            // }
+            async getPage(val){
+                const{data:res} =await this.$http.get("inout/total",{params:{deviceId:this.input,page:val,pageSize:this.pageSize}})
+                if(res.code===200){
+                    this.totalPage=res.data*10;
+                }
+                else{
+                    this.$message.error("获取分页数据错误！");
+                }
+            }
         }
     }
 

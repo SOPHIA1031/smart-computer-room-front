@@ -6,58 +6,32 @@
             </el-breadcrumb>
         </div>
         <div class="container">
+            <el-alert
+                :title="getText()"
+                type="success"
+                style="margin-bottom: 20px;width: 90%;">
+            </el-alert>
+            
+            <!-- TODO: action modify 124.70.13.200 -->
             <div class="upload">
+                <div class="upText">UWB指纹库文件上传:</div>
                 <el-upload
                     class="upload-demo"
                     style="margin-bottom:20px;margin-left: 30%;"
                     drag
-                    action="http://localhost:8081/upload/uwb"
+                    action="http://124.70.13.200:8081/upload/uwb"
                     accept=".csv,.CSV"
-                    multiple=false
-                    limit=1
+                    :limit="1"
+                    :data="uploadData"
                     :auto-upload="true"
-                    :on-exceed="handleExceed"
                     :on-success="handleSuccess"
-                    :on-erroe="handleErr"
-                    :data="type">
+                    :on-error="handleErr"
+                    >
                     <i class="el-icon-upload"></i>
                     <div class="el-upload__text">更新指纹库请将文件拖到此处，或<em>点击上传</em></div>
                     
                 </el-upload>
-                <div style="margin-left: 30%;">
-                    <span class="tip">生成指纹库方式:   </span>
-                    <el-button type="primary" style="margin-left: 10px;">方式一</el-button>
-                    <el-button type="primary">方式二</el-button>
-                    <el-button type="primary">方式三</el-button>
-                </div>
             </div>
-            
-            <!-- <div class="list">
-                <div class="tip">文件上传历史:</div>
-                <el-table
-                    :data="tableData"
-                    border
-                    :row-style="{height:'35px'}"
-                    style="font-size:15px">
-                    <el-table-column
-                    prop="date"
-                    label="上传时间"
-                    width="180"
-                    align="center">
-                    </el-table-column>
-                    <el-table-column
-                    prop="filename"
-                    label="文件名"
-                    width="180"
-                    align="center">
-                    </el-table-column>
-                    <el-table-column
-                    prop="user"
-                    label="上传用户"
-                    align="center">
-                    </el-table-column>
-                </el-table>
-            </div> -->
             
         </div>
     </div>
@@ -68,22 +42,41 @@
         name: 'upload',
         data(){
             return {
-                tableData:[{date:"2022",file}]
+                tableData:[{date:"2022",file}],
+                msg: "目前使用的指纹库上传时间为:",
+                uploadData:{jobNum:sessionStorage.getItem("jobNum")}
             }
         },
         methods:{
+            async getUpdatedTime(){
+                const {data:res} = await this.$http.get("/file/uwb")
+                if(res.code===200){
+                    if(res.data==="empty"){
+                        this.msg="数据库中不存在上传记录"
+                    }
+                    this.msg="目前使用的指纹库上传时间为:"+res.data+", 请及时更新"
+                }
+                else{
+                    this.msg="出现问题"
+                }
+            },
             handleSuccess(res){
-                if(res.data.code===200){
-                    this.$message.success("指纹库更新成功！")
+                if(res.code===200){
+                    this.$message.success("指纹库上传成功！")
                 }
             },
             handleErr(res){
-                if(res.data.code===200){
-                    this.$message.success("指纹库更新失败，请重试！")
+                if(res.code===0){
+                    this.$message.success("指纹库上传失败，请重试！")
                 }
-            }
+            },
+            getText(){
+                return this.msg
+            },
+            
         },
         created(){
+            this.getUpdatedTime()
             
         }
     }
@@ -99,5 +92,15 @@
     margin-bottom: 15px;
     color:  #606266;
     /* font-weight: 500; */
+}
+
+.upload{
+    position: relative;
+}
+
+.upText{
+    position:absolute;
+    top: 45%;
+    color:  #606266;
 }
 </style>
