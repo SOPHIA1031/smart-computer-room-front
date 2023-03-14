@@ -54,6 +54,11 @@
                         title: '人员定位'
                     },
                     {
+                        icon: 'el-icon-map-location',
+                        index: 'workpoint',
+                        title: '工作点管理'
+                    },
+                    {
                         icon:'el-icon-lx-copy',
                         index:'history',
                         title:'历史轨迹查询'

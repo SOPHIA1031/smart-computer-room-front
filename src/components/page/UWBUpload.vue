@@ -12,14 +12,14 @@
                 style="margin-bottom: 20px;width: 90%;">
             </el-alert>
             
-            <!-- TODO: action modify 124.70.13.200 -->
+            <!-- TODO: action modify 10.62.41.45 -->
             <div class="upload">
                 <div class="upText">UWB指纹库文件上传:</div>
                 <el-upload
                     class="upload-demo"
                     style="margin-bottom:20px;margin-left: 30%;"
                     drag
-                    action="http://124.70.13.200:8081/upload/uwb"
+                    action="http://10.62.41.45:8081/upload/uwb"
                     accept=".csv,.CSV"
                     :limit="1"
                     :data="uploadData"

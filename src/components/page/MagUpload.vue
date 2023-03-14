@@ -14,12 +14,12 @@
             <div class="upload1">
                 <div class="upText">iLocator采集文件上传:</div>
 
-                <!-- TODO: action modify 124.70.13.200-->
+                <!-- TODO: action modify 10.62.41.45-->
                 <el-upload
                     class="upload-demo"
                     ref="iLocator"
                     style="margin-bottom:20px;margin-left: 30%;"
-                    action="http://124.70.13.200:8081/upload/mag/1"
+                    action="http://10.62.41.45:8081/upload/mag/1"
                     accept=".csv,.CSV,.txt"
                     :data="{type:iLocator}"
                     :limit="1"
@@ -41,7 +41,7 @@
                     class="upload-demo"
                     ref="smartphone"
                     style="margin-bottom:20px;margin-left: 30%;"
-                    action="http://124.70.13.200:8081/upload/mag/2"
+                    action="http://10.62.41.45:8081/upload/mag/2"
                     accept=".csv,.CSV"
                     :data="smartphone"
                     :limit="1"

@@ -29,9 +29,9 @@
             <el-dialog
                 title="轨迹展示"
                 :visible.sync="dialogVisible"
-                width="80%"
+                width="70%"
                 @open="clearCanvas()">
-                <canvas id="mCanvas"></canvas>
+                <canvas id="mCanvas" width="900" height="300"></canvas>
 
                 <el-button type="primary" @click="drawPic" style="margin-left: 20px;">开始画图</el-button>
             </el-dialog>
@@ -110,22 +110,24 @@
             drawPic(){
                 let canvas = document.getElementById('mCanvas');
                 let ctx=canvas.getContext('2d');
-
+                
                 ctx.strokeStyle="red";
                 for(let i=0;i<this.locs.length-1;i++){
                     ctx.moveTo(this.locs[i].x+0.5,this.locs[i].y+0.5);
                     ctx.lineTo(this.locs[i+1].x+0.5,this.locs[i+1].y+0.5);
                     ctx.stroke();
-                    console.log(i);
+                    
                 }
             },
             clearCanvas(){
                 let canvas = document.getElementById('mCanvas');
 
-                var w = canvas.width;
-                var h = canvas.height;
-                canvas.width=w;
-                canvas.height=h;
+                var width = canvas.width;
+                var height = canvas.height;
+                canvas.style.width = width + "px";
+                canvas.style.height = height + "px";
+                canvas.height = height;
+                canvas.width = width;
             }
         }
     }
@@ -161,6 +163,6 @@
         width: 900px;
         height: 300px;
         border: 1px solid #909399;
-        margin-left: 100px;
+        /* margin-left: 100px; */
     }
 </style>

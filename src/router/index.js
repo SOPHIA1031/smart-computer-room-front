@@ -30,6 +30,11 @@ export default new Router({
                     meta: { title: '人员定位' }
                 },
                 {
+                    path: '/workpoint',
+                    component: resolve => require(['../components/page/WorkPointManagement.vue'], resolve),
+                    meta: { title: '工作点管理' }
+                },
+                {
                     path: '/pointLoc',
                     component: resolve => require(['../components/page/StaticWorkPoint.vue'], resolve),
                     meta: { title: '静态人员定位' }

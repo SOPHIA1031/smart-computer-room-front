@@ -15,7 +15,7 @@
                 <span v-if="taskStatus" style="margin-left: 20px;color: #606266;">正在定位中...</span>
             </div>
         
-            <canvas id="myCanvas" style="border:1px solid #909399;width:1000px;height:600px"></canvas>
+            <canvas id="myCanvas" width="1200" height="400" style="border:1px solid #909399; width:1200px;height:400px"></canvas>
         </div>
     </div>
 </template>
@@ -40,10 +40,10 @@
         },
         methods:{
             async getPoint(){
-                const {data:res}=await this.$http.get("location/",{params:{'jobNum':this.jobNum}});
+                const {data:res}=await this.$http.get("/location",{params:{'jobNum':this.jobNum}});
                 if(res.code===200){
                     this.points.push({x:res.data.x,y:res.data.y})
-                    // console.log(this.points)
+                    console.log(this.points)
                 }
                 else{
                     this.$message.error("获取定位出错")
@@ -62,6 +62,10 @@
                
             },
             startLoc(){
+                if(this.jobNum===""){
+                    this.$message.error("工号不能为空！")
+                    return;
+                }
                 this.taskStatus=true;
                 // this.uwbBtn=true;
                 this.timer=setInterval(()=>{
@@ -70,12 +74,20 @@
                         this.drawPoints()
                          
                     },0) 
-                },500)
+                },1000)
             },
             stopLoc(){
-                // this.uwbBtn=false;
                 this.taskStatus=false;
                 clearInterval(this.timer);
+
+                let canvas = document.getElementById('myCanvas');
+
+                var width = canvas.width;
+                var height = canvas.height;
+                canvas.style.width = width + "px";
+                canvas.style.height = height + "px";
+                canvas.height = height;
+                canvas.width = width;
             },
             async startMag(){
                 // this.magBtn=true;
