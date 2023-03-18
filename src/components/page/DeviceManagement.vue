@@ -9,11 +9,11 @@
             <div class="inContainer">
                 <div class="handle-box">
                     <el-button type="primary" icon="el-icon-plus" class="handle-del mr10" @click="addDevice">新增设备</el-button>
-                    <el-input v-model="input" placeholder="根据工号搜索" class="handle-input mr10"></el-input>
+                    <el-input v-model="input" placeholder="根据手机号搜索" class="handle-input mr10"></el-input>
                     <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 </div>
                 <el-table :data="tableData" border class="table" ref="multipleTable">
-                    <el-table-column prop="jobNum" label="工号"  width="200" align="center">
+                    <el-table-column prop="jobNum" label="手机号"  width="200" align="center">
                     </el-table-column>
                     <el-table-column prop="username" label="姓名" width="200" align="center">
                     </el-table-column>
@@ -35,7 +35,7 @@
 
         <el-dialog title="新增设备" :visible.sync="addVisible" width="600px" center>
         <el-form :model="form" label-width="150px">
-            <el-form-item label="工号">
+            <el-form-item label="手机号">
                 <el-col :span="14">
                     <el-input v-model="form.jobNum" autocomplete="off"></el-input>
                 </el-col>
@@ -114,7 +114,7 @@ import { resolveObjectURL } from 'buffer';
                     this.$message.error("该用户不存在，请重试!");
                 }
                 else if(res.msg=="addErr"){
-                    this.$message.error("设备绑定失已存在，请重试!");
+                    this.$message.error("设备绑定已存在，请重试!");
                 }
                 else{
                     this.$message.error("设备绑定失败，请重试!");

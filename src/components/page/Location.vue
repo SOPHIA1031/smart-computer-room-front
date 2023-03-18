@@ -3,7 +3,7 @@
         <div class="inContainer">
             <div class="btns">
                 <el-form>
-                    <el-form-item label="请输入被定位人员的工号:" style="width: 300px;">
+                    <el-form-item label="请输入被定位人员的手机号:" style="width: 300px;">
                         <el-input v-model="jobNum"></el-input>
                     </el-form-item>
                 </el-form>
@@ -40,7 +40,7 @@
         },
         methods:{
             async getPoint(){
-                const {data:res}=await this.$http.get("/location",{params:{'jobNum':this.jobNum}});
+                const {data:res}=await this.$http.get("/location/start",{params:{'jobNum':this.jobNum}});
                 if(res.code===200){
                     this.points.push({x:res.data.x,y:res.data.y})
                     console.log(this.points)
@@ -63,7 +63,7 @@
             },
             startLoc(){
                 if(this.jobNum===""){
-                    this.$message.error("工号不能为空！")
+                    this.$message.error("手机号不能为空！")
                     return;
                 }
                 this.taskStatus=true;
@@ -76,9 +76,18 @@
                     },0) 
                 },1000)
             },
-            stopLoc(){
+            async stopLoc(){
                 this.taskStatus=false;
                 clearInterval(this.timer);
+                
+                const {data:res} = await this.$http.get("/location/stop",{params:{'jobNum':this.jobNum}});
+                if(res.code===200){
+                    this.$message.success("停止定位!")
+                }
+                else{
+                    this.$message.error("请重试");
+                }
+
 
                 let canvas = document.getElementById('myCanvas');
 

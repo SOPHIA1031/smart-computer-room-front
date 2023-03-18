@@ -4,8 +4,8 @@
             <div class="ms-title">新用户注册</div>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="ms-content">
                 <el-form-item prop="jobNum">
-                    <el-input v-model="ruleForm.jobNum" placeholder="请输入工号">
-                        <el-button slot="prepend" icon="el-icon-lx-people">工号</el-button>
+                    <el-input v-model="ruleForm.jobNum" placeholder="请输入手机号">
+                        <el-button slot="prepend" icon="el-icon-lx-people">手机</el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
@@ -18,11 +18,11 @@
                         <el-button slot="prepend" icon="el-icon-user">姓名</el-button>
                     </el-input>
                 </el-form-item>
-                <el-form-item prop="tel">
+                <!-- <el-form-item prop="tel">
                     <el-input  placeholder="请输入手机号" v-model="ruleForm.tel">
                         <el-button slot="prepend" icon="el-icon-phone-outline">手机</el-button>
-                    </el-input>
-                </el-form-item>
+                    </el-input> 
+                </el-form-item>-->
                 <el-form-item prop="department">
                     <el-input  placeholder="请输入部门" v-model="ruleForm.department">
                         <el-button slot="prepend" icon="el-icon-postcard">部门</el-button>
@@ -50,7 +50,7 @@
                 },
                 rules: {
                     jobNum: [
-                        { required: true, message: '请输入工号', trigger: 'blur' }
+                        { required: true, message: '请输入手机号', trigger: 'blur' }
                     ],
                     password: [
                         { required: true, message: '请输入密码', trigger: 'blur' }
@@ -60,16 +60,13 @@
         },
         methods: {
             async submit(){
-                // console.log(this.ruleForm)
                 const {data:res} =await this.$http.post('user/register',this.ruleForm)
-                // console.log(res.code);
                 if(res.code===200){
                     localStorage.setItem('username',this.ruleForm.username);
                     this.$router.push('/');
                 }
                 else {
-                    this.$message.error("注册失败，请重新注册！")
-                    // console.log('error submit!!');
+                    this.$message.error("手机号已经注册过！")
                 }
             }
         }

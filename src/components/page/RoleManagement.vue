@@ -8,7 +8,7 @@
         <div class="container">
             <div class="inContainer">
                 <el-table :data="data" border class="table" ref="multipleTable">
-                <el-table-column prop="jobNum" label="工号" sortable width="300" align="center">
+                <el-table-column prop="jobNum" label="手机号" sortable width="300" align="center">
                 </el-table-column>
                 <el-table-column prop="username" label="姓名" width="300" align="center">
                 </el-table-column>

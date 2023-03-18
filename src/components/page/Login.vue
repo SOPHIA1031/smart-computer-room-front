@@ -4,7 +4,7 @@
             <div class="ms-title">智慧机房后台管理系统</div>
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
-                    <el-input v-model="ruleForm.username" placeholder="请输入工号">
+                    <el-input v-model="ruleForm.username" placeholder="请输入手机号">
                         <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
                     </el-input>
                 </el-form-item>

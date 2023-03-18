@@ -12,11 +12,11 @@
             <div class="inContainer">
                 <div class="handle-box">
                     <el-button type="primary" icon="el-icon-plus" class="handle-del mr10" @click="addReg">新增限制区域</el-button>
-                    <el-input v-model="input" placeholder="根据工号搜索" class="handle-input mr10"></el-input>
+                    <el-input v-model="input" placeholder="根据手机号搜索" class="handle-input mr10"></el-input>
                     <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 </div>
                 <el-table :data="tableData" border class="table" ref="multipleTable" >
-                    <el-table-column prop="jobNum" label="工号"  width="200" align="center">
+                    <el-table-column prop="jobNum" label="手机号"  width="200" align="center">
                     </el-table-column>
                     <el-table-column prop="username" label="姓名" width="200" align="center">
                     </el-table-column>
@@ -39,7 +39,7 @@
 
         <el-dialog title="新增限制区域" :visible.sync="addVisible" width="600px" center>
         <el-form :model="form" label-width="150px">
-            <el-form-item label="工号">
+            <el-form-item label="手机号">
                     <el-input v-model="form.jobNum" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="左上点x轴坐标">

@@ -7,7 +7,7 @@
         </div>
         <div class="container">
             <el-alert
-                :title="getText()"
+                :title="info"
                 type="success"
                 style="margin-bottom: 20px;width: 90%;">
             </el-alert>
@@ -22,7 +22,6 @@
                     action="http://10.62.41.45:8081/upload/uwb"
                     accept=".csv,.CSV"
                     :limit="1"
-                    :data="uploadData"
                     :auto-upload="true"
                     :on-success="handleSuccess"
                     :on-error="handleErr"
@@ -42,24 +41,10 @@
         name: 'upload',
         data(){
             return {
-                tableData:[{date:"2022",file}],
-                msg: "目前使用的指纹库上传时间为:",
-                uploadData:{jobNum:sessionStorage.getItem("jobNum")}
+                info: "目前使用的指纹库上传时间为:"
             }
         },
         methods:{
-            async getUpdatedTime(){
-                const {data:res} = await this.$http.get("/file/uwb")
-                if(res.code===200){
-                    if(res.data==="empty"){
-                        this.msg="数据库中不存在上传记录"
-                    }
-                    this.msg="目前使用的指纹库上传时间为:"+res.data+", 请及时更新"
-                }
-                else{
-                    this.msg="出现问题"
-                }
-            },
             handleSuccess(res){
                 if(res.code===200){
                     this.$message.success("指纹库上传成功！")
@@ -70,14 +55,26 @@
                     this.$message.success("指纹库上传失败，请重试！")
                 }
             },
+            async getUpdatedTime(){
+                const {data:res} = await this.$http.get("/file/uwb")
+                if(res.code===200){
+                    if(res.data==="empty"){
+                        this.info="数据库中不存在上传记录"
+                    }
+                    this.info=this.info+res.data+", 请及时更新"
+                    console.log(this.info)
+                }
+                else{
+                    this.$message.error("获取最新指纹库上传之间出错！")
+                }
+            },
             getText(){
-                return this.msg
+                return this.info
             },
             
         },
         created(){
             this.getUpdatedTime()
-            
         }
     }
 </script>

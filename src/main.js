@@ -14,8 +14,9 @@ Vue.use(ElementUI, {
 });
 
 Vue.prototype.$http = axios;
-axios.defaults.baseURL="http://10.62.41.45:8081/"
-// axios.defaults.baseURL="http://localhost:8081/"
+// axios.defaults.baseURL="http://10.62.41.45:8081/"
+axios.defaults.baseURL="http://localhost:8081/"
+// axios.defaults.baseURL="http://124.70.14.200:8081/"
 axios.defaults.withCredentials=false
 
 //使用钩子函数对路由进行权限跳转

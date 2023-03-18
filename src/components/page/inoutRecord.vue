@@ -14,8 +14,8 @@
                 <el-table :data="tableData" :header-cell-style="{textAlign: 'center'}" :cell-style="{ textAlign: 'center' }" border class="table" ref="multipleTable" @selection-change="handleSelectionChange">
                     <el-table-column prop="deviceId" label="设备id"  width="150" align="center">
                     </el-table-column>
-                    <el-table-column prop="jobNum" label="工号"  width="150" align="center">
-                    </el-table-column>
+                    <!-- <el-table-column prop="jobNum" label="工号"  width="150" align="center">
+                    </el-table-column> -->
                     <el-table-column prop="inoutTime" label="出入时间" align="center">
                     </el-table-column>
                     <el-table-column prop="status" label="进出状态"  align="center">

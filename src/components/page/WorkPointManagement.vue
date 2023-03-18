@@ -8,11 +8,11 @@
         <div class="container">
             <div class="inContainer">
                 <div class="handle-box" style="text-align: center;">
-                    <el-input v-model="input" placeholder="筛选工号" class="handle-input mr10"></el-input>
+                    <el-input v-model="input" placeholder="筛选手机号" class="handle-input mr10"></el-input>
                     <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 </div>
                 <el-table :data="tableData" :header-cell-style="{textAlign: 'center'}" :cell-style="{ textAlign: 'center' }" border class="table" ref="multipleTable">
-                    <el-table-column prop="jobNum" label="工号"  width="150" align="center">
+                    <el-table-column prop="jobNum" label="手机号"  width="150" align="center">
                     </el-table-column>
                     <el-table-column prop="workLoc" label="工作点位置" align="center">
                     </el-table-column>

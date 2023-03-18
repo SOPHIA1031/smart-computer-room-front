@@ -8,17 +8,17 @@
         <div class="container">
             <div class="inContainer">
                 <div class="handle-box" style="text-align: center;">
-                    <el-input v-model="input" placeholder="筛选工号" class="handle-input mr10"></el-input>
+                    <el-input v-model="input" placeholder="筛选用户手机号" class="handle-input mr10"></el-input>
                     <el-button type="primary" icon="search" @click="search">搜索</el-button>
                 </div>
 
                 <el-table :data="data" border class="table" ref="multipleTable" @selection-change="handleSelectionChange">
-                <el-table-column prop="jobNum" label="工号" sortable width="250" align="center">
+                <el-table-column prop="jobNum" label="手机" sortable width="250" align="center">
                 </el-table-column>
                 <el-table-column prop="username" label="姓名" width="250" align="center">
                 </el-table-column>
-                <el-table-column prop="tel" label="手机"  align="center">
-                </el-table-column>
+                <!-- <el-table-column prop="tel" label="手机"  align="center">
+                </el-table-column> -->
                 <el-table-column prop="department" label="部门" align="center">
                 </el-table-column>
                 <el-table-column label="操作" width="180" align="center">
