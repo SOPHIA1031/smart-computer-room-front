@@ -18,11 +18,6 @@
                         <el-button slot="prepend" icon="el-icon-user">姓名</el-button>
                     </el-input>
                 </el-form-item>
-                <!-- <el-form-item prop="tel">
-                    <el-input  placeholder="请输入手机号" v-model="ruleForm.tel">
-                        <el-button slot="prepend" icon="el-icon-phone-outline">手机</el-button>
-                    </el-input> 
-                </el-form-item>-->
                 <el-form-item prop="department">
                     <el-input  placeholder="请输入部门" v-model="ruleForm.department">
                         <el-button slot="prepend" icon="el-icon-postcard">部门</el-button>

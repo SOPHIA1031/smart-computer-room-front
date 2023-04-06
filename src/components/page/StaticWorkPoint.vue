@@ -25,6 +25,20 @@
                         <el-option label="测试点四" value="3"></el-option>
                         <el-option label="测试点五" value="4"></el-option>
                         <el-option label="测试点六" value="5"></el-option>
+                        <el-option label="测试点七" value="6"></el-option>
+                        <el-option label="测试点八" value="7"></el-option>
+                        <el-option label="测试点九" value="8"></el-option>
+                        <el-option label="测试点十" value="9"></el-option>
+                        <el-option label="测试点十一" value="10"></el-option>
+                        <el-option label="测试点十二" value="11"></el-option>
+                        <el-option label="测试点十三" value="12"></el-option>
+                        <el-option label="测试点十四" value="13"></el-option>
+                        <el-option label="测试点十五" value="14"></el-option>
+                        <el-option label="测试点十六" value="15"></el-option>
+                        <el-option label="测试点十七" value="16"></el-option>
+                        <el-option label="测试点十八" value="17"></el-option>
+                        <el-option label="测试点十九" value="18"></el-option>
+                        <el-option label="测试点二十" value="19"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item>
@@ -88,12 +102,26 @@
                 second:20,
                 uwbRes:"",
                 magRes:"",
-                tableData:[{idx:"测试点一",loc_x:1,loc_y:2,test_x:"",test_y:"",diff:""},
-                            {idx:"测试点二",loc_x:1,loc_y:2,test_x:"",test_y:"",diff:""},
-                            {idx:"测试点三",loc_x:1,loc_y:2,test_x:"",test_y:"",diff:""},
-                            {idx:"测试点四",loc_x:1,loc_y:2,test_x:"",test_y:"",diff:""},
-                            {idx:"测试点五",loc_x:1,loc_y:2,test_x:"",test_y:"",diff:""},
-                            {idx:"测试点六",loc_x:1,loc_y:2,test_x:"",test_y:"",diff:""}]
+                tableData:[{idx:"测试点一",loc_x:0,loc_y:0,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点二",loc_x:0.2,loc_y:-6.13,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点三",loc_x:-0.2,loc_y:-12.95,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点四",loc_x:10.4,loc_y:-11.46,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点五",loc_x:7.05,loc_y:0.82,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点六",loc_x:9.65,loc_y:2.82,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点七",loc_x:5.62,loc_y:2.83,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点八",loc_x:0.53,loc_y:3.17,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点九",loc_x:0.90,loc_y:9.33,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十",loc_x:5.67,loc_y:9.39,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十一",loc_x:9.64,loc_y:9.47,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十二",loc_x:9.42,loc_y:13.27,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十三",loc_x:5.87,loc_y:13.25,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十四",loc_x:0.53,loc_y:12.97,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十五",loc_x:0.35,loc_y:17.11,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十六",loc_x:0.2,loc_y:24.61,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十七",loc_x:3.31,loc_y:24.65,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十八",loc_x:8.52,loc_y:24.69,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点十九",loc_x:6.31,loc_y:20.68,test_x:"",test_y:"",diff:""},
+                            {idx:"测试点二十",loc_x:5.56,loc_y:-2.09,test_x:"",test_y:"",diff:""}]
             }
         },
         methods:{
@@ -111,11 +139,11 @@
 
                 const {data:res} = await this.$http.post("/static/uwb",postData);
                 if(res.code==200){
-                    console.log(res.data)
+                    // console.log(res.data)
                     var index=parseInt(this.idx)
-                    this.tableData[index].test_x=res.data.x;
-                    this.tableData[index].test_y=res.data.y;
-                    this.calculateDiff(index,res.data.x,res.data.y)
+                    this.tableData[index].test_x=res.data[0];
+                    this.tableData[index].test_y=res.data[1];
+                    this.calculateDiff(index,res.data[0],res.data[1])
                 }
                 else{
                     this.$message.error("出现问题，请重试");

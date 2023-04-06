@@ -17,8 +17,6 @@
                 </el-table-column>
                 <el-table-column prop="username" label="姓名" width="250" align="center">
                 </el-table-column>
-                <!-- <el-table-column prop="tel" label="手机"  align="center">
-                </el-table-column> -->
                 <el-table-column prop="department" label="部门" align="center">
                 </el-table-column>
                 <el-table-column label="操作" width="180" align="center">
