@@ -8,12 +8,12 @@
                     </el-form-item>
                 </el-form>
                 
-                <!-- <el-button type="primary" @click="drawPoints" >开始uwb定位</el-button> -->
-                <el-button type="primary" @click="drawWorkPoints" >开始uwb定位</el-button> 
+                <el-button type="primary" @click="startLoc" >开始uwb定位</el-button>
                 <el-button type="primary" @click="stopLoc" >停止uwb定位</el-button>
 
                 <el-button type="primary" @click="startMag" >开始地磁定位</el-button>
                 <el-button type="primary" @click="stopMag" >停止地磁定位</el-button>
+
                 <span v-if="taskStatus" style="margin-left: 20px;color: #606266;">正在定位中...</span>
             </div>
             
@@ -32,7 +32,7 @@
             return{
                 taskStatus:false,
                 timer:null,
-                points:[{x:1,y:2},{x:10,y:10},{x:20,y:50},{x:100,y:200}],
+                points:[],
                 jobNum:"",
                 referencePoint:[{idx:1,loc_x:0,loc_y:0},
                             {idx:2,loc_x:0.2,loc_y:-6.13},
@@ -82,14 +82,23 @@
                 let canvas = document.getElementById('myCanvas');
                 let ctx=canvas.getContext('2d');
                 ctx.strokeStyle="red";
-                for(let i=0;i<this.points.length-1;i++){
-                    let xA=this.points[i].x
-                    let yA=this.points[i].y
-                    let xB=this.points[i+1].x
-                    let yB=this.points[i+1].y
+                var len=this.points.length;
+                if(len>=2){
+                    let xA=this.points[len-2].x
+                    let yA=this.points[len-2].y
+                    let xB=this.points[len-1].x
+                    let yB=this.points[len-1].y
                     
                     this.drawArrow(ctx,xA,yA,xB,yB)
                 }
+                // for(let i=0;i<this.points.length-1;i++){
+                //     let xA=this.points[i].x
+                //     let yA=this.points[i].y
+                //     let xB=this.points[i+1].x
+                //     let yB=this.points[i+1].y
+                    
+                //     this.drawArrow(ctx,xA,yA,xB,yB)
+                // }
                
             },
             drawArrow(ctx,xA,yA,xB,yB) {
@@ -130,8 +139,8 @@
             },
             transLoc(){
                 for(var i=0;i<this.referencePoint.length;i++){
-                    var lx=parseInt((this.referencePoint[i].loc_y+9.)*33.8);
-                    var ly=parseInt((this.referencePoint[i].loc_x+2.35)*33.8);
+                    var lx=parseInt((this.referencePoint[i].loc_y+8.9)*33.8);
+                    var ly=parseInt((this.referencePoint[i].loc_x+2.36)*33.8);
                     this.referencePoint[i].loc_x=1200-lx;
                     this.referencePoint[i].loc_y=521-ly;
                 }
@@ -149,7 +158,7 @@
                         this.drawPoints()
                          
                     },0) 
-                },1000)
+                },500)
             },
             async stopLoc(){
                 this.taskStatus=false;
@@ -172,6 +181,8 @@
                 canvas.style.height = height + "px";
                 canvas.height = height;
                 canvas.width = width;
+
+                this.points=[]
             },
             async startMag(){
                 // this.magBtn=true;
@@ -192,7 +203,8 @@
                 else{
                     this.$message.error("停止地磁定位失败，请重试")
                 }
-            }   
+            },
+  
         }
     }
 

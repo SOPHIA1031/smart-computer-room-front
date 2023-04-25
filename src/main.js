@@ -15,7 +15,7 @@ Vue.use(ElementUI, {
 
 Vue.prototype.$http = axios;
 // axios.defaults.baseURL="http://10.62.41.45:8081/"
-// axios.defaults.baseURL="http://localhost:8082/"
+// axios.defaults.baseURL="http://localhost:8081/"
 axios.defaults.baseURL="http://124.70.13.200:8081/"
 axios.defaults.withCredentials=false
 

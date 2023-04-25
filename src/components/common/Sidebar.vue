@@ -61,8 +61,13 @@
                     {
                         icon:'el-icon-lx-copy',
                         index:'history',
-                        title:'历史轨迹查询'
+                        title:'地磁定位历史轨迹查询'
                     
+                    },
+                    {
+                        icon:'el-icon-lx-copy',
+                        index:'uwbTrajectory',
+                        title:'uwb定位历史轨迹查询'
                     },
                     {
                         icon: 'el-icon-folder',

@@ -40,9 +40,14 @@ export default new Router({
                     meta: { title: '静态人员定位' }
                 },
                 {
+                    path: '/uwbTrajectory',
+                    component: resolve => require(['../components/page/UWBTrajectory.vue'],resolve),
+                    meta: { title: 'uwb定位历史轨迹查询'}
+                },
+                {
                     path: '/history',
                     component: resolve => require(['../components/page/HistoryTrajectory.vue'],resolve),
-                    meta: { title: '历史轨迹查询'}
+                    meta: { title: '地磁历史轨迹查询'}
                 },
                 {
                     path: '/UWBUpload',
