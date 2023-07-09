@@ -2,26 +2,26 @@
     <div class="container">
         <div class="inContainer">
             <div class="btns">
-                <el-form>
+                <!-- <el-form>
                     <el-form-item label="请输入被定位人员的手机号:" style="width: 300px;">
                         <el-input v-model="jobNum"></el-input>
                     </el-form-item>
-                </el-form>
+                </el-form> -->
                 
-                <el-button type="primary" @click="drawPoints" >开始uwb定位</el-button>
+                <el-button type="primary" @click="startLoc" >开始uwb定位</el-button>
                 <el-button type="primary" @click="stopLoc" >停止uwb定位</el-button>
 
-                <el-button type="primary" @click="startMag" >开始地磁定位</el-button>
-                <el-button type="primary" @click="stopMag" >停止地磁定位</el-button>
+                <!-- <el-button type="primary" @click="startMag" >开始地磁定位</el-button>
+                <el-button type="primary" @click="stopMag" >停止地磁定位</el-button> -->
 
                 <span v-if="taskStatus" style="margin-left: 20px;color: #606266;">正在定位中...</span>
             </div>
             
-            <div class="loc_background">
+            <!-- <div class="loc_background">
                 <canvas id="myCanvas" width="1200" height="521" style="width:1200px;height:521px"></canvas>
-            </div>
+            </div> -->
             
-            <!-- <iframe src="https://panshi.em3ai.com/" style="width:1200px;height:521px" id="mframe"></iframe> -->
+            <iframe src="https://panshi.em3ai.com/" style="width:1200px;height:521px" id="mframe"></iframe>
             
         </div>
     </div>
@@ -157,10 +157,16 @@
                 this.timer=setInterval(()=>{
                     setTimeout(()=>{
                         this.getPoint()
-                        this.drawPoints()
-                         
+                        // this.drawPoints()
+                        var lastPoint=this.points[this.points.length-1];
+                        obj.x=lastPoint.x;
+                        obj.y=lastPoint.y;
+                        document.getElementById("mframe").contentWindow.postMessage(obj,'*');
+                        // obj.x=obj.x+1;
+                        // obj.y=obj.y+1;
+                        console.log(obj);
                     },0) 
-                },1000)
+                },2000)
             },
             async stopLoc(){
                 this.taskStatus=false;

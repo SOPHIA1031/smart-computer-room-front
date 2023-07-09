@@ -19,7 +19,7 @@
                     class="upload-demo"
                     style="margin-bottom:20px;margin-left: 30%;"
                     drag
-                    action="http://124.70.13.200:8081/upload/uwb"
+                    action="http://10.62.41.45:8081/upload/uwb"
                     accept=".csv,.CSV"
                     :limit="1"
                     :auto-upload="true"

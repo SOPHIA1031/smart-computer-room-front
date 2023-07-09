@@ -40,9 +40,14 @@ export default new Router({
                     meta: { title: '静态人员定位' }
                 },
                 {
+                    path: '/panshi',
+                    component: resolve => require(['../components/page/LocationPanshi.vue'],resolve),
+                    meta: { title: '磐石系统测试'}
+                },
+                {
                     path: '/history',
                     component: resolve => require(['../components/page/HistoryTrajectory.vue'],resolve),
-                    meta: { title: '历史轨迹查询'}
+                    meta: { title: '地磁历史轨迹查询'}
                 },
                 {
                     path: '/UWBUpload',
