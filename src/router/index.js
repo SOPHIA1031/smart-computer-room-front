@@ -45,6 +45,11 @@ export default new Router({
                     meta: { title: '磐石系统测试'}
                 },
                 {
+                    path: '/uwbTrajectory',
+                    component: resolve => require(['../components/page/UWBTrajectory.vue'],resolve),
+                    meta: { title: 'uwb定位历史轨迹查询'}
+                },
+                {
                     path: '/history',
                     component: resolve => require(['../components/page/HistoryTrajectory.vue'],resolve),
                     meta: { title: '地磁历史轨迹查询'}

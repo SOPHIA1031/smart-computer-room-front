@@ -160,7 +160,7 @@
                         this.drawPoints()
                          
                     },0) 
-                },1000)
+                },500)
             },
             async stopLoc(){
                 this.taskStatus=false;
